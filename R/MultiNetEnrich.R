@@ -8,7 +8,6 @@
 #' @param nperm the number of random permuations to use. Default \eqn{1000}.
 #' @param maxitr maximum number of iterations. Default \eqn{1000}.
 #' @param scale should variables be scaled? Default \code{TRUE}
-#' @param verbose logical indicator of printing information at each iteration
 #'
 #' @return a fitted \code{MultiNetEnrich} object
 #'
@@ -17,7 +16,7 @@
 #'
 #' @export
 #'
-MultiNetEnrich <- function(X, database = NULL,nperm=1000, maxitr = 1e3, scale=TRUE, verbose=TRUE){
+MultiNetEnrich <- function(X, database = NULL,nperm=1000, maxitr = 1e3, scale=TRUE){
 
   # If only one data set is provided, single-network version is used instead.
   if(!is.list(X)){
@@ -42,7 +41,7 @@ MultiNetEnrich <- function(X, database = NULL,nperm=1000, maxitr = 1e3, scale=TR
   p <- dim(X[[1]])[2]
   K <- length(X)
   # Perform joint network analysis
-  res.joint = jointGHS::jointGHS(X,epsilon=1e-3,AIC_eps = 0.1,maxitr=maxitr,scale=scale,verbose=verbose)
+  res.joint = jointGHS::jointGHS(X,epsilon=1e-3,AIC_eps = 0.1,maxitr=maxitr,scale=scale,verbose=F)
   cat('Network analysis done.')
 
   # Write ranked gene lists to files
@@ -50,13 +49,13 @@ MultiNetEnrich <- function(X, database = NULL,nperm=1000, maxitr = 1e3, scale=TR
   ranked.lists = list()
   for(k in 1:K){
     theta.est = stats::cov2cor(res.joint$theta[[k]])
-    theta.est[which(abs(theta.est[[k]]) < 1e-5, arr.ind = T)] = 0
+    theta.est[which(abs(theta.est) < 1e-5, arr.ind = T)] = 0
     g.tmp = igraph::graph.adjacency(theta.est!=0, mode='undirected', diag=F)
-    df.deg = data.frame(degree=igraph::degree(g.tmp),
-                        gene = colnames(X[[k]]))
+    df.deg = data.frame(gene = colnames(X[[k]]),
+                        degree=igraph::degree(g.tmp)+1)
     df.deg.ordered = df.deg[rev(order(df.deg$degree)),]
     ranked.lists[[k]] = df.deg.ordered
-    df.deg.unique = df.deg[-which(duplicated(df.deg.ordered$gene)),]
+    df.deg.unique = df.deg.ordered[which(!duplicated(df.deg.ordered$gene)),]
     utils::write.table(df.deg.unique, file = paste0('MultiNetEnrich_tmp/df_degree_', k, '.rnk'), sep = "\t", quote=FALSE,
                 row.names = F, col.names = F)
   }
@@ -70,9 +69,9 @@ MultiNetEnrich <- function(X, database = NULL,nperm=1000, maxitr = 1e3, scale=TR
                       reshuffling.type = "gene.labels", output.directory = 'MultiNetEnrich_tmp_gsea', gs.size.threshold.min = 2,
                       gsea.type='preranked', nperm=nperm)
       unlink("MultiNetEnrich_tmp_gsea", recursive = TRUE)
-      enriched.tmp = tmp.gsea$report1[tmp.gsea$report1$`FDR q-val`<0.25,]
+      enriched.tmp = tmp.gsea$report1[tmp.gsea$report1$`FDR q-val`<0.25 & tmp.gsea$report1$`NOM p-val`<0.05,]
       if(nrow(enriched.tmp)>0){
-        if(is.null(enriched.list[[k]])){
+        if(length(enriched.list) < k){
           enriched.list[[k]] = enriched.tmp
         }
         else{
