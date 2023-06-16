@@ -125,8 +125,8 @@ We can inspect the enriched gene sets
 # Look at enriched gene sets for AML
 enrich.res$enrichment.list[[2]][, c("GS", "SIZE", "NES", "NOM p-val", "FDR q-val")]
 #>                    GS SIZE    NES NOM p-val FDR q-val
-#> 1 HALLMARK_PEROXISOME    2 1.4755   0.02198    0.1215
-#> 2 HALLMARK_GLYCOLYSIS    2 1.4657   0.02756  0.066667
+#> 1 HALLMARK_GLYCOLYSIS    2 1.4853   0.02799   0.14042
+#> 2 HALLMARK_PEROXISOME    2 1.4623   0.03834  0.084667
 ```
 
 The ranking of the genes can be printed for further inspection of the
@@ -135,6 +135,12 @@ top hubs.
 ``` r
 # For AML
 enrich.res$ranked.lists[[1]][1:5, ] # Print top five genes
+#>         gene degree
+#> 40   PAXIP1L      5
+#> 39     CCL19      5
+#> 37     RNGTT      5
+#> 31 1629_s_at      5
+#> 27     DDX18      5
 ```
 
 The estimated networks can be visualised with functions from the

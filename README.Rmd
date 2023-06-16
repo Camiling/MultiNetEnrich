@@ -119,7 +119,7 @@ enrich.res$enrichment.list[[2]][,c('GS','SIZE','NES', 'NOM p-val','FDR q-val')]
 
 The ranking of the genes can be printed for further inspection of the top hubs.
 
-```{r,fig.align='center', out.width='60%',results='hide',warning=FALSE}
+```{r,warning=FALSE}
 # For AML
 enrich.res$ranked.lists[[1]][1:5,] # Print top five genes
 ```
