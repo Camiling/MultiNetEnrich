@@ -25,6 +25,7 @@ library(foreach)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!--[![codecov](https://codecov.io/gh/Camiling/JoStARS/branch/main/graph/badge.svg?token=QL5ZW3RQZD)](https://codecov.io/gh/Camiling/JoStARS) -->
 <!--[![R build status](https://github.com/Camiling/JoStARS/workflows/R-CMD-check/badge.svg)](https://github.com/Camiling/JoStARS/actions) -->
+[![R-CMD-check](https://github.com/Camiling/MultiNetEnrich/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Camiling/MultiNetEnrich/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 <!-- IF ON CRAN [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-last-release/shapr)]
@@ -71,6 +72,9 @@ You might need to run the script for GSEA manually once before the package can b
 source(system.file('extdata', 'Run.GSEA.R', package = 'GSEA'))
 ```
 
+## Specifying gene sets
+
+The default gene sets are Wikipathways, PID, and Hallmark, but any gene set from MSigDb can be used. The gene sets to be used must be provided through the ``database`` argument as one or more strings in the form of the URLs listed [here](https://data.broadinstitute.org/gsea-msigdb/msigdb/release/7.5.1/).
 
 ## Example
 

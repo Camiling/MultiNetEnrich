@@ -8,6 +8,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!--[![codecov](https://codecov.io/gh/Camiling/JoStARS/branch/main/graph/badge.svg?token=QL5ZW3RQZD)](https://codecov.io/gh/Camiling/JoStARS) -->
 <!--[![R build status](https://github.com/Camiling/JoStARS/workflows/R-CMD-check/badge.svg)](https://github.com/Camiling/JoStARS/actions) -->
+[![R-CMD-check](https://github.com/Camiling/MultiNetEnrich/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Camiling/MultiNetEnrich/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 <!-- IF ON CRAN [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-last-release/shapr)]
@@ -72,6 +73,14 @@ package can be used
 source(system.file("extdata", "Run.GSEA.R", package = "GSEA"))
 ```
 
+## Specifying gene sets
+
+The default gene sets are Wikipathways, PID, and Hallmark, but any gene
+set from MSigDb can be used. The gene sets to be used must be provided
+through the `database` argument as one or more strings in the form of
+the URLs listed
+[here](https://data.broadinstitute.org/gsea-msigdb/msigdb/release/7.5.1/).
+
 ## Example
 
 The main function `MultiNetEnrich` takes a list of $K$ data matrices,
@@ -125,8 +134,8 @@ We can inspect the enriched gene sets
 # Look at enriched gene sets for AML
 enrich.res$enrichment.list[[2]][, c("GS", "SIZE", "NES", "NOM p-val", "FDR q-val")]
 #>                    GS SIZE    NES NOM p-val FDR q-val
-#> 1 HALLMARK_GLYCOLYSIS    2 1.4853   0.02799   0.14042
-#> 2 HALLMARK_PEROXISOME    2 1.4623   0.03834  0.084667
+#> 1 HALLMARK_PEROXISOME    2 1.4702   0.02549    0.1225
+#> 2 HALLMARK_GLYCOLYSIS    2 1.4645    0.0303  0.066042
 ```
 
 The ranking of the genes can be printed for further inspection of the
