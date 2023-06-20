@@ -4,14 +4,7 @@
 \alias{MultiNetEnrich}
 \title{Perform functional network enrichment for multiple data sets}
 \usage{
-MultiNetEnrich(
-  X,
-  database = NULL,
-  nperm = 1000,
-  maxitr = 1000,
-  scale = TRUE,
-  verbose = TRUE
-)
+MultiNetEnrich(X, database = NULL, nperm = 1000, maxitr = 1000, scale = TRUE)
 }
 \arguments{
 \item{X}{list of the \eqn{K} observed \eqn{n_k} by \eqn{p} data matrices}
@@ -24,8 +17,6 @@ If not specified, Wikipathways, PID and Hallmark are used.}
 \item{maxitr}{maximum number of iterations. Default \eqn{1000}.}
 
 \item{scale}{should variables be scaled? Default \code{TRUE}}
-
-\item{verbose}{logical indicator of printing information at each iteration}
 }
 \value{
 a fitted \code{MultiNetEnrich} object

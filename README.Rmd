@@ -25,7 +25,6 @@ library(foreach)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!--[![codecov](https://codecov.io/gh/Camiling/JoStARS/branch/main/graph/badge.svg?token=QL5ZW3RQZD)](https://codecov.io/gh/Camiling/JoStARS) -->
 <!--[![R build status](https://github.com/Camiling/JoStARS/workflows/R-CMD-check/badge.svg)](https://github.com/Camiling/JoStARS/actions) -->
-[![R-CMD-check](https://github.com/Camiling/MultiNetEnrich/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Camiling/MultiNetEnrich/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 <!-- IF ON CRAN [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-last-release/shapr)]
