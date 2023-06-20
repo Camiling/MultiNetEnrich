@@ -8,7 +8,6 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!--[![codecov](https://codecov.io/gh/Camiling/JoStARS/branch/main/graph/badge.svg?token=QL5ZW3RQZD)](https://codecov.io/gh/Camiling/JoStARS) -->
 <!--[![R build status](https://github.com/Camiling/JoStARS/workflows/R-CMD-check/badge.svg)](https://github.com/Camiling/JoStARS/actions) -->
-[![R-CMD-check](https://github.com/Camiling/MultiNetEnrich/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Camiling/MultiNetEnrich/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 <!-- IF ON CRAN [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-last-release/shapr)]
@@ -134,8 +133,8 @@ We can inspect the enriched gene sets
 # Look at enriched gene sets for AML
 enrich.res$enrichment.list[[2]][, c("GS", "SIZE", "NES", "NOM p-val", "FDR q-val")]
 #>                    GS SIZE    NES NOM p-val FDR q-val
-#> 1 HALLMARK_PEROXISOME    2 1.4702   0.02549    0.1225
-#> 2 HALLMARK_GLYCOLYSIS    2 1.4645    0.0303  0.066042
+#> 1 HALLMARK_PEROXISOME    2 1.5107   0.02778  0.099833
+#> 2 HALLMARK_GLYCOLYSIS    2 1.4956   0.02773  0.054667
 ```
 
 The ranking of the genes can be printed for further inspection of the
